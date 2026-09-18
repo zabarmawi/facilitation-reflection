@@ -1,0 +1,26 @@
+{
+  "name": "بطاقة تأمل وتطوير تجربة التيسير",
+  "short_name": "بطاقة التيسير",
+  "description": "مراجعة ذاتية للممارسة من أجل تيسير أكثر وعيًا وأثرًا",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f5",
+  "theme_color": "#0F4C3A",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
