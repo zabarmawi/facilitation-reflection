@@ -211,6 +211,63 @@ a{color:inherit}
 .print-next-action{margin-top:8px;font-size:13px;line-height:1.7}
 .print-empty{font-size:12.5px;color:#6b7f77;padding:10px 0}
 
+
+.help-btn{background:rgba(255,255,255,.08)}
+.help-btn:hover{background:rgba(255,255,255,.18)}
+.help-modal{
+  position:fixed;inset:0;z-index:100;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(10,35,28,.58);
+  backdrop-filter:blur(5px)
+}
+.help-modal.open{display:flex}
+.help-panel{
+  width:min(760px,100%);max-height:min(86vh,820px);overflow:auto;
+  background:#fff;border:1px solid var(--line);border-radius:24px;
+  box-shadow:0 24px 70px rgba(15,76,58,.28)
+}
+.help-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 22px;background:var(--brand);color:#fff;
+  border-radius:23px 23px 0 0;position:sticky;top:0;z-index:2
+}
+.help-head-title{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700}
+.help-icon{
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+  background:#fff;color:var(--brand);font-weight:800;font-size:20px;flex:none
+}
+.help-close{
+  border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);
+  color:#fff;border-radius:10px;width:38px;height:38px;cursor:pointer;font-size:22px
+}
+.help-body{padding:22px}
+.help-intro{
+  margin:0 0 18px;padding:14px 16px;border-radius:14px;
+  background:var(--soft);color:var(--brand);font-weight:700;line-height:1.8
+}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.help-card{
+  border:1px solid var(--line);border-radius:15px;padding:15px 16px;
+  background:#fbfdfc;line-height:1.85
+}
+.help-card.wide{grid-column:1/-1}
+.help-card h3{margin:0 0 8px;font-size:16px;color:var(--brand)}
+.help-card p{margin:0;color:var(--ink)}
+.help-card ul{margin:0;padding-right:20px}
+.help-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.help-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 10px;
+  border-radius:999px;background:#eef5f1;color:var(--brand);font-size:12px;font-weight:700
+}
+@media(max-width:650px){
+  .help-grid{grid-template-columns:1fr}
+  .help-card.wide{grid-column:auto}
+  .help-panel{max-height:90vh;border-radius:18px}
+  .help-head{border-radius:17px 17px 0 0;padding:16px}
+  .help-body{padding:16px}
+  .help-head-title{font-size:18px}
+}
+
 @media(max-width:900px){
   .grid{grid-template-columns:1fr}
   .sidebar{display:none}
@@ -327,6 +384,7 @@ a{color:inherit}
     <div class="header-actions">
       <button id="newQuickBtn" class="install" title="بدء جلسة جديدة">＋ جلسة جديدة</button>
       <button id="installBtn" class="install">تثبيت التطبيق</button>
+      <button id="helpBtn" class="install help-btn" title="طريقة استخدام البطاقة">ⓘ طريقة الاستخدام</button>
     </div>
   </header>
 
@@ -386,7 +444,71 @@ a{color:inherit}
     </main>
   </div>
 </div>
-  <footer class="site-footer">إعداد/ فهد عبدالله زبرماوي <span style="opacity:.65;font-weight:400">• الإصدار V9</span></footer>
+  <footer class="site-footer">إعداد/ فهد عبدالله زبرماوي <span style="opacity:.65;font-weight:400">• الإصدار V10</span></footer>
+
+
+<div id="helpModal" class="help-modal no-print" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div class="help-panel">
+    <div class="help-head">
+      <div class="help-head-title">
+        <span class="help-icon" aria-hidden="true">i</span>
+        <span id="helpTitle">كيف تستخدم بطاقة التأمل؟</span>
+      </div>
+      <button id="helpClose" class="help-close" aria-label="إغلاق">×</button>
+    </div>
+    <div class="help-body">
+      <div class="help-intro">
+        تستغرق البطاقة بضع دقائق، والهدف منها أن تخرج من كل جلسة بقرار تحسين عملي واحد على الأقل.
+      </div>
+
+      <div class="help-grid">
+        <section class="help-card">
+          <h3>ما هي البطاقة؟</h3>
+          <p>أداة تأمل ذاتي تساعد الميسّر بعد الجلسة على مراجعة ممارسته، ملاحظة جوانب القوة، وتحديد أولوية تطوير واضحة للجلسة القادمة. وهي ليست أداة تقييم أو درجات.</p>
+        </section>
+
+        <section class="help-card">
+          <h3>متى تستخدمها؟</h3>
+          <p>بعد انتهاء الجلسة، أو في وقت مناسب بين الجلسات، عندما تكون تفاصيل التجربة ما تزال حاضرة في ذهنك.</p>
+        </section>
+
+        <section class="help-card wide">
+          <h3>كيف تستخدمها؟</h3>
+          <ul>
+            <li>أدخل بيانات الجلسة.</li>
+            <li>انتقل بين العدسات التأملية واختر ما ينطبق على ممارستك.</li>
+            <li>أضف «أخرى» أو «ملاحظة اختيارية» عند الحاجة.</li>
+            <li>في النهاية حدّد أولوية التحسين وما ستفعله بصورة مختلفة في الجلسة القادمة.</li>
+            <li>يمكنك عرض الملخص، نسخه، أو طباعته وحفظه بصيغة PDF.</li>
+          </ul>
+        </section>
+
+        <section class="help-card">
+          <h3>أون لاين وأوف لاين</h3>
+          <p>تعمل البطاقة أثناء الاتصال بالإنترنت، وبعد فتحها وتحميلها مرة واحدة يمكن استخدامها أيضًا دون اتصال بالإنترنت على الجهاز نفسه.</p>
+          <div class="help-badges">
+            <span class="help-badge">🌐 أون لاين</span>
+            <span class="help-badge">◌ أوف لاين</span>
+          </div>
+        </section>
+
+        <section class="help-card">
+          <h3>تثبيتها على الجوال</h3>
+          <p>يمكن تثبيت البطاقة لتظهر كتطبيق مستقل على الشاشة الرئيسية. على iPhone أو iPad استخدم «مشاركة ← إضافة إلى الشاشة الرئيسية»، وعلى الأجهزة الداعمة استخدم زر «تثبيت التطبيق».</p>
+          <div class="help-badges">
+            <span class="help-badge">📱 شاشة رئيسية</span>
+            <span class="help-badge">⚡ وصول سريع</span>
+          </div>
+        </section>
+
+        <section class="help-card wide">
+          <h3>الخصوصية</h3>
+          <p>إجاباتك تُحفظ داخل متصفح جهازك فقط ولا تُرسل إلى جهة خارجية. لذلك قد يؤدي حذف بيانات المتصفح إلى حذف سجل الجلسات المحفوظ محليًا.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="toast" class="toast">تم الحفظ</div>
 
@@ -934,6 +1056,28 @@ if ("serviceWorker" in navigator) {
     }
   });
 }
+
+const helpModal = document.getElementById("helpModal");
+const helpBtn = document.getElementById("helpBtn");
+const helpClose = document.getElementById("helpClose");
+
+function openHelp(){
+  helpModal.classList.add("open");
+  document.body.style.overflow="hidden";
+  helpClose.focus();
+}
+function closeHelp(){
+  helpModal.classList.remove("open");
+  document.body.style.overflow="";
+  helpBtn.focus();
+}
+helpBtn?.addEventListener("click", openHelp);
+helpClose?.addEventListener("click", closeHelp);
+helpModal?.addEventListener("click", e=>{ if(e.target===helpModal) closeHelp(); });
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape" && helpModal?.classList.contains("open")) closeHelp();
+});
+
 </script>
 </body>
 </html>
